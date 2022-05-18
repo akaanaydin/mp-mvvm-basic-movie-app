@@ -8,22 +8,26 @@
 import UIKit
 import SnapKit
 
+//MARK: - Protocols
 protocol MovieOutput {
     func selectedMovies(imdbID: String)
 }
 
 
 class MovieHomeController: UIViewController {
-    // MARK: - UI Elements
+    // MARK: - Properties
     
+    // UI Elements
     private let mainTableView: UITableView = UITableView()
     private let searchController: UISearchController = UISearchController()
+    // Service
     private let service = Services()
+    // Data
     private var search = [Search]()
+    // View Model
     private var viewModel: MovieHomeProtocol = MovieHomeViewModel(service: Services())
     
     // MARK: - Life Cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -37,7 +41,6 @@ class MovieHomeController: UIViewController {
     }
     
     // MARK: - Functions
-    
     private func configure() {
         addSubviews()
         drawDesign()
@@ -45,12 +48,13 @@ class MovieHomeController: UIViewController {
     }
     
     private func drawDesign() {
+        // TableView
         mainTableView.dataSource = self
         mainTableView.delegate = self
         mainTableView.register(MovieHomeTableViewCell.self, forCellReuseIdentifier: MovieHomeTableViewCell.Identifier.custom.rawValue)
         mainTableView.rowHeight = 150
         mainTableView.separatorStyle = .none
-        
+        // NavigationBar
         configureNavigationBar(largeTitleColor: .systemGray, backgoundColor: .white, tintColor: .black, title: "Movieflix", preferredLargeTitle: false)
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
@@ -111,7 +115,7 @@ extension MovieHomeController: UISearchResultsUpdating {
         })
     }
 }
-
+// MARK: - ViewModel Extension
 extension MovieHomeController: MovieOutput {
     func selectedMovies(imdbID: String) {
         viewModel.getMovieDetail(movieImdbId: imdbID) { data in
