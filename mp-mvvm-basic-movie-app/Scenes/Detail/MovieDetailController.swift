@@ -10,17 +10,21 @@ import SnapKit
 import Kingfisher
 
 class MovieDetailController: UIViewController {
-    
+    //MARK: - Flip Animation Enums
     private enum Side {
         case head
         case tail
     }
     
+    //MARK: - Properties
+    // Flip Card Active Side
     private var currentSide: Side = .head
+    // Service
     private let service = Services()
+    // Data
     private var detailResults: DetailResults
-    var imdbID: String = String()
     
+    // UI Elements
     private let movieImage : UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .orange
@@ -30,6 +34,12 @@ class MovieDetailController: UIViewController {
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = 2
         return imageView
+    }()
+    
+    private let containerView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private let imdbView : UIView = {
@@ -51,12 +61,6 @@ class MovieDetailController: UIViewController {
         view.layer.cornerRadius = 30
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 2
-        return view
-    }()
-    
-    private let containerView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -138,6 +142,7 @@ class MovieDetailController: UIViewController {
         return label
     }()
     
+    //MARK: - Initializers
     init(detailResults: DetailResults) {
         self.detailResults = detailResults
         
@@ -148,16 +153,17 @@ class MovieDetailController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
     
+    //MARK: - Functions
     func configure() {
         addSubviews()
         drawDesign()
         tapGesture()
-        setUp()
         makeContainerView()
         makeMovieImage()
         makeDetailView()
@@ -171,11 +177,38 @@ class MovieDetailController: UIViewController {
         makeImdbView()
         makeInformationLabel()
     }
-    
+    // Design
     func drawDesign() {
         view.backgroundColor = .white
+        // Image
+        let urlImage = URL(string: detailResults.poster)
+        movieImage.kf.setImage(with: urlImage)
+        // Label Text
+        titleLabel.text = detailResults.title
+        plotLabel.text = detailResults.plot
+        genreLabel.text = detailResults.genre
+        // Label Multiline Text
+        imdbRatingLabel.text = """
+        IMDB
+        \(detailResults.imdbRating)
+        """
+        
+        directorLabel.text = """
+        Director
+        \(detailResults.director)
+        """
+        
+        writerLabel.text = """
+        Writer
+        \(detailResults.writer)
+        """
+        
+        actorsLabel.text = """
+        Actors
+        \(detailResults.actors)
+        """
     }
-    
+    // Subviews
     func addSubviews() {
         view.addSubview(containerView)
         view.addSubview(informationLabel)
@@ -191,36 +224,12 @@ class MovieDetailController: UIViewController {
         containerView.addSubview(actorsLabel)
         
     }
-    
+    // Tap Gesture for Flip Animation
     func tapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapContainer))
         containerView.addGestureRecognizer(tapGesture)
     }
-    
-    func setUp() {
-        let urlImage = URL(string: detailResults.poster)
-        movieImage.kf.setImage(with: urlImage)
-        titleLabel.text = detailResults.title
-        imdbRatingLabel.text = """
-        IMDB
-        \(detailResults.imdbRating)
-        """
-        plotLabel.text = detailResults.plot
-        genreLabel.text = detailResults.genre
-        directorLabel.text = """
-        Director
-        \(detailResults.director)
-        """
-        writerLabel.text = """
-        Writer
-        \(detailResults.writer)
-        """
-        actorsLabel.text = """
-        Actors
-        \(detailResults.actors)
-        """
-    }
-    
+    // Labels Visibilty Status
     func hideLabels(_ status: Bool){
         titleLabel.isHidden = status
         plotLabel.isHidden = status
@@ -235,7 +244,7 @@ class MovieDetailController: UIViewController {
         imdbView.isHidden = status
         informationLabel.isHidden = status
     }
-    
+    // Selector for Tap Gesture
     @objc
     func tapContainer() {
         switch currentSide {
@@ -260,10 +269,8 @@ class MovieDetailController: UIViewController {
         }
     }
 }
-
+//MARK: - SnapKit Extension
 extension MovieDetailController {
-    
-    
     private func makeContainerView() {
         containerView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
