@@ -7,7 +7,7 @@
 
 import Alamofire
 
-// MARK : - Protocols
+// MARK :- Protocols
 protocol ServiceProtocols {
     func searchMovie(searchMovieName: String, completion: @escaping ([Search]?) -> Void)
     func getMovieDetail(movieImdbId: String, completion: @escaping (DetailResults?) -> Void)
