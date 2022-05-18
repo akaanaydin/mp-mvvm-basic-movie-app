@@ -56,6 +56,7 @@ class MovieHomeTableViewCell: UITableViewCell {
         stackView.spacing = 5
         return stackView
     }()
+    
     private let horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -114,6 +115,7 @@ class MovieHomeTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Extensions
 extension MovieHomeTableViewCell {
     
     private func makeHorizontalStackView(){
