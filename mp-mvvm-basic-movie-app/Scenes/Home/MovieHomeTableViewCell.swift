@@ -115,7 +115,7 @@ class MovieHomeTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - Extensions
+// MARK: - Snapkit Extension
 extension MovieHomeTableViewCell {
     
     private func makeHorizontalStackView(){
