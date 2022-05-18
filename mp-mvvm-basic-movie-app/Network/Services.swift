@@ -7,6 +7,7 @@
 
 import Alamofire
 
+// MARK : - Protocols
 protocol ServiceProtocols {
     func searchMovie(searchMovieName: String, completion: @escaping ([Search]?) -> Void)
     func getMovieDetail(movieImdbId: String, completion: @escaping (DetailResults?) -> Void)
@@ -29,7 +30,7 @@ final class Services: ServiceProtocols {
                 completion(nil)
                 return
             }
-            completion(data) // hata olabilir
+            completion(data)
         }
     }
     
