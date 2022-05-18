@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Protocols
 protocol MovieHomeProtocol{
     func searchMovie(searchMovieName: String, completion: @escaping ([Search]?) -> Void)
     func getMovieDetail(movieImdbId: String, completion: @escaping (DetailResults?) -> Void)
@@ -24,6 +25,7 @@ final class MovieHomeViewModel: MovieHomeProtocol {
   
 }
 
+//MARK: - Extension Protocol Functions
 extension MovieHomeViewModel {
     func searchMovie(searchMovieName: String, completion: @escaping ([Search]?) -> Void) {
         service.searchMovie(searchMovieName: searchMovieName) { data in
