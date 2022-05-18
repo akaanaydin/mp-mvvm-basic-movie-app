@@ -23,6 +23,3 @@ extension Constant {
         }
     }
 }
-
-//http://www.omdbapi.com/?s=searchMovieName&apikey=4b0018ac
-//http://www.omdbapi.com/?i=movieImdbId=&apikey=4b0018ac
