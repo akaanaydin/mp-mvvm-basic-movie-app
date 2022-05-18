@@ -15,8 +15,8 @@ class MovieDetailController: UIViewController {
         case head
         case tail
     }
-    
     //MARK: - Properties
+    
     // Flip Card Active Side
     private var currentSide: Side = .head
     // Service
