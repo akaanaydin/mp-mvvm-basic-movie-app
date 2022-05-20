@@ -32,7 +32,7 @@ class MovieHomeTableViewCell: UITableViewCell {
         imageView.layer.cornerRadius = 75
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 5
-        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderColor = Color.appBlack.cgColor
         imageView.image = UIImage(named: "movieConstantImage")
         imageView.snp.makeConstraints { make in
             make.height.width.equalTo(150)
@@ -94,7 +94,7 @@ class MovieHomeTableViewCell: UITableViewCell {
         contentView.layer.cornerRadius = 75
         contentView.backgroundColor = .lightGray.withAlphaComponent(0.2)
         contentView.layer.borderWidth = 3
-        contentView.layer.borderColor = UIColor.white.cgColor
+        contentView.layer.borderColor = Color.appBlack.cgColor
     }
     
     private func addSubviews() {

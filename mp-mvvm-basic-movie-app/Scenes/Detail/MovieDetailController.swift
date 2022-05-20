@@ -27,11 +27,10 @@ class MovieDetailController: UIViewController {
     // UI Elements
     private let movieImage : UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .orange
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 30
-        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderColor = Color.appWhite.cgColor
         imageView.layer.borderWidth = 2
         return imageView
     }()
@@ -55,11 +54,11 @@ class MovieDetailController: UIViewController {
     
     private let detailView : UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = Color.appBlack
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         view.layer.cornerRadius = 30
-        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderColor = Color.appWhite.cgColor
         view.layer.borderWidth = 2
         return view
     }()
@@ -179,7 +178,7 @@ class MovieDetailController: UIViewController {
     }
     // Design
     func drawDesign() {
-        view.backgroundColor = .white
+        view.backgroundColor = Color.appBlack
         // Image
         let urlImage = URL(string: detailResults.poster)
         movieImage.kf.setImage(with: urlImage)

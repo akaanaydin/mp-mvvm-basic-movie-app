@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 //MARK: - Protocols
 protocol MovieOutput {
@@ -20,6 +21,13 @@ class MovieHomeController: UIViewController {
     // UI Elements
     private let mainTableView: UITableView = UITableView()
     private let searchController: UISearchController = UISearchController()
+    private let noResultLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = Color.appWhite
+        label.text = "There were no results."
+        return label
+    }()
     // Service
     private let service = Services()
     // Data
@@ -30,14 +38,9 @@ class MovieHomeController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = Color.appBlack
         configure()
         viewModel.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        searchController.searchBar.text = nil
-        searchController.isActive = false
     }
     
     // MARK: - Functions
@@ -45,6 +48,7 @@ class MovieHomeController: UIViewController {
         addSubviews()
         drawDesign()
         makeTableView()
+        makeNoResultLabel()
     }
     
     private func drawDesign() {
@@ -55,13 +59,15 @@ class MovieHomeController: UIViewController {
         mainTableView.rowHeight = 150
         mainTableView.separatorStyle = .none
         // NavigationBar
-        configureNavigationBar(largeTitleColor: .systemGray, backgoundColor: .white, tintColor: .black, title: "Movieflix", preferredLargeTitle: false)
+        configureNavigationBar(largeTitleColor: .systemGray, backgoundColor: Color.appBlack, tintColor: Color.appWhite, title: "Movieflix", preferredLargeTitle: false)
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
+        searchController.searchBar.showsCancelButton = false
     }
     
     private func addSubviews() {
         view.addSubview(mainTableView)
+        view.addSubview(noResultLabel)
     }
     
 }
@@ -78,6 +84,8 @@ extension MovieHomeController: UITableViewDelegate, UITableViewDataSource {
         guard let cell: MovieHomeTableViewCell = tableView.dequeueReusableCell(withIdentifier: MovieHomeTableViewCell.Identifier.custom.rawValue) as? MovieHomeTableViewCell else {
             return UITableViewCell()
         }
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 75
         cell.saveModel(model: search[indexPath.row])
         return cell
     }
@@ -99,6 +107,13 @@ extension MovieHomeController {
             make.right.equalToSuperview().inset(15)
         }
     }
+    
+    private func makeNoResultLabel() {
+        noResultLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+    }
+
 }
 
 // MARK: - Search Controller Extension
@@ -106,9 +121,19 @@ extension MovieHomeController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let writtenText = searchController.searchBar.text else { return }
         let searchMovieName = writtenText.replacingOccurrences(of: " ", with: "%20")
+        
+        if writtenText == "" {
+            noResultLabel.isHidden = false
+        }else{
+            noResultLabel.isHidden = true
+        }
+        
         service.searchMovie(searchMovieName: searchMovieName, completion: {
             data in
             self.search = data ?? []
+            if writtenText.count > 3 && data == nil {
+                self.makeAlert(titleInput: "Error", messageInput: "The movie not found")
+            }
             DispatchQueue.main.async {
                 self.mainTableView.reloadData()
             }
@@ -126,5 +151,14 @@ extension MovieHomeController: MovieOutput {
     }
     
 }
-
-
+// MARK: - Alert
+extension MovieHomeController {
+    func makeAlert(titleInput:String, messageInput:String) {
+           let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { _ in
+            self.searchController.searchBar.text = nil
+        }
+           alert.addAction(okButton)
+           self.present(alert, animated: true, completion: nil)
+    }
+}
