@@ -1,4 +1,4 @@
-# mp-mvvm-basic-movie-app
+# MVVM Basic Movie App
 
 
 
