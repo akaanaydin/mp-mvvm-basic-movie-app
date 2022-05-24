@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 
+//MARK: - Dark Mode Colors
 class Color {
-    ///White color for dark mode -  Black  color for light mode
+    //White color for dark mode -  Black  color for light mode
     public static var appWhite: UIColor = {
       if #available(iOS 13, *) {
         return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
