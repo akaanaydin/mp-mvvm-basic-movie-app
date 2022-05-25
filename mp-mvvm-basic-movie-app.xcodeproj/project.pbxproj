@@ -16,7 +16,7 @@
 		B95A86A828304EFB00BCD87C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B95A86A728304EFB00BCD87C /* Kingfisher */; };
 		B95A86AB28304F0F00BCD87C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B95A86AA28304F0F00BCD87C /* SnapKit */; };
 		B9C2E1F628382AB000EBAA8F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2E1F528382AB000EBAA8F /* Color.swift */; };
-		B9D58EDC28307B3200BD8025 /* NavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D58EDB28307B3200BD8025 /* NavigationController + Extension.swift */; };
+		B9D58EDC28307B3200BD8025 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D58EDB28307B3200BD8025 /* NavigationController.swift */; };
 		B9F5C3722830441000F41B09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F5C3712830441000F41B09 /* AppDelegate.swift */; };
 		B9F5C3742830441000F41B09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F5C3732830441000F41B09 /* SceneDelegate.swift */; };
 		B9F5C37B2830441100F41B09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9F5C37A2830441100F41B09 /* Assets.xcassets */; };
@@ -34,7 +34,7 @@
 		B9076703283308D600CDB088 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		B90767062833092900CDB088 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
 		B9C2E1F528382AB000EBAA8F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		B9D58EDB28307B3200BD8025 /* NavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController + Extension.swift"; sourceTree = "<group>"; };
+		B9D58EDB28307B3200BD8025 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		B9F5C36E2830441000F41B09 /* mp-mvvm-basic-movie-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mp-mvvm-basic-movie-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F5C3712830441000F41B09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9F5C3732830441000F41B09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,17 +89,17 @@
 		B9D58EDA28307AFA00BD8025 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B9D58EDD28307CED00BD8025 /* Home */,
+				B9D58EDD28307CED00BD8025 /* ViewController+Extension */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B9D58EDD28307CED00BD8025 /* Home */ = {
+		B9D58EDD28307CED00BD8025 /* ViewController+Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B9D58EDB28307B3200BD8025 /* NavigationController + Extension.swift */,
+				B9D58EDB28307B3200BD8025 /* NavigationController.swift */,
 			);
-			path = Home;
+			path = "ViewController+Extension";
 			sourceTree = "<group>";
 		};
 		B9F5C3652830441000F41B09 = {
@@ -299,7 +299,7 @@
 				B9C2E1F628382AB000EBAA8F /* Color.swift in Sources */,
 				B9F5C38F28304BE700F41B09 /* MovieHomeController.swift in Sources */,
 				B9F5C39728304CA400F41B09 /* MovieHomeTableViewCell.swift in Sources */,
-				B9D58EDC28307B3200BD8025 /* NavigationController + Extension.swift in Sources */,
+				B9D58EDC28307B3200BD8025 /* NavigationController.swift in Sources */,
 				B9F5C3722830441000F41B09 /* AppDelegate.swift in Sources */,
 				B90767012833086900CDB088 /* Services.swift in Sources */,
 				B9F5C3742830441000F41B09 /* SceneDelegate.swift in Sources */,

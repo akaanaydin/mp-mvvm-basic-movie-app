@@ -17,9 +17,9 @@ protocol MovieHomeProtocol{
 
 final class MovieHomeViewModel: MovieHomeProtocol {
     var delegate: MovieOutput?
-    private var service: ServiceProtocols
+    private var service: ServiceProtocol
     
-    init(service: ServiceProtocols) {
+    init(service: ServiceProtocol) {
         self.service = service
     }
   

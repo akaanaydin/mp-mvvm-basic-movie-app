@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension MovieHomeController {
+extension UIViewController {
     
 func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
     if #available(iOS 13.0, *) {

@@ -8,12 +8,12 @@
 import Alamofire
 
 // MARK: - Protocols
-protocol ServiceProtocols {
+protocol ServiceProtocol {
     func searchMovie(searchMovieName: String, completion: @escaping ([Search]?) -> Void)
     func getMovieDetail(movieImdbId: String, completion: @escaping (DetailResults?) -> Void)
 }
 
-final class Services: ServiceProtocols {
+final class Services: ServiceProtocol {
     func searchMovie(searchMovieName: String, completion: @escaping ([Search]?) -> Void) {
         AF.request(Constant.NetworkConstant.SearchMovieServiceEndPoint.searchMovie(searchMovieName: searchMovieName)).responseDecodable(of: Result.self) { data in
             guard let data = data.value else {
